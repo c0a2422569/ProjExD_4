@@ -93,6 +93,13 @@ class Bird(pg.sprite.Sprite):
             if key_lst[k]:
                 sum_mv[0] += mv[0]
                 sum_mv[1] += mv[1]
+                
+            #加速イベント
+            if key_lst[pg.K_LSHIFT]: #スペース
+                self.speed = 20 #加速化処理
+            else: #通常時
+                self.speed = 10
+            
         self.rect.move_ip(self.speed*sum_mv[0], self.speed*sum_mv[1])
         if check_bound(self.rect) != (True, True):
             self.rect.move_ip(-self.speed*sum_mv[0], -self.speed*sum_mv[1])
